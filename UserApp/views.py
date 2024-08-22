@@ -10,9 +10,9 @@ from .serializers import *
 # Create your views here.
 
 class UserRegisterView(APIView):
-    serializers_class = UserRegisterSRL
+    serializer_class = UserRegisterSRL
     def post(self, request):
-        serializer = self.serializers_class(data=request.data)
+        serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, 201)

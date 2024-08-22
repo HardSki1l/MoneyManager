@@ -5,4 +5,4 @@ from .models import *
 class UserRegisterSRL(serializers.ModelSerializer):
     class Meta:
         model = UsersInfoModel
-        fields = 'all'
+        fields = '__all__'
