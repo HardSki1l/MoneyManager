@@ -1,5 +1,4 @@
 from tarfile import data_filter
-from urllib.request import request_host
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
