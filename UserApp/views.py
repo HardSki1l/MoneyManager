@@ -6,11 +6,15 @@ from rest_framework.response import Response
 
 from django.shortcuts import render
 from .serializers import *
+from drf_yasg.utils import swagger_auto_schema
 
 # Create your views here.
 
 class UserRegisterView(APIView):
+
     serializer_class = UserRegisterSRL
+    @swagger_auto_schema(request_body=UserRegisterSRL)
+
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():

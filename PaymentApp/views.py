@@ -3,11 +3,12 @@ from rest_framework.response import Response
 from .serializers import *
 from .models import HistoryModel
 from CardApp.models import CardModel
-
+from drf_yasg.utils import swagger_auto_schema
 class HistoryAdd(APIView):
     serializer_class = HistoryModelSerializer
     queryset = HistoryModel
 
+    @swagger_auto_schema(request_body=HistoryModelSerializer)
     def post(self, request):
         card_related = int(request.data.get("card_related"))
         price = request.data.get("price")

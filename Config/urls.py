@@ -14,13 +14,31 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
 from django.urls import path, include
+from django.contrib import admin
 
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Swagger UI",
+        default_version='v1',
+        description="Swagger UI",
+        terms_of_service="",
+        contact=openapi.Contact(email=""),
+        license=openapi.License(name=""),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('card/', include('CardApp.urls')),
-    path('history/', include('PaymentApp.urls')),
-    path('User/', include('UserApp.urls'))
+                  path('admin/', admin.site.urls),
+                  path('card/', include('CardApp.urls')),
+                  path('history/', include('PaymentApp.urls')),
+                  path('user/', include('UserApp.urls')),
+                  path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 
-]
+              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -15,3 +15,16 @@ class CardModel(models.Model):
 
     def __str__(self):
         return self.card_number
+
+
+
+#bugun bo`lgan barcha to`lovlarni chiqarib beruvchi get api
+#1 hafta ichida eng katta pul to`lov api si
+#umumiy ma`lumotlar ichidan eng katta pul o`tkazmasi api si
+
+
+
+
+
+
+
