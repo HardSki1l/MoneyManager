@@ -1,4 +1,4 @@
-from datetime import datetime
+
 from django.db import models
 from UserApp.models import UsersInfoModel
 from CardApp.models import CardModel
@@ -7,7 +7,7 @@ class HistoryModel(models.Model):
     card_related = models.ForeignKey(CardModel, on_delete=models.CASCADE)
     who_payed = models.ForeignKey(UsersInfoModel, on_delete=models.CASCADE, blank=True, null=True)
     price = models.FloatField(default=0)
-    when_date = models.DateField(default=datetime.now)
+    when_date = models.DateTimeField(auto_now_add=True)
     CHOICES = (
         ('Taksi', 'Taksi'),
         ('Oziq-ovqat', 'Oziq-ovqat'),
