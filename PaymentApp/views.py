@@ -32,7 +32,9 @@ class HistoryAdd1(APIView):
         else:
             return Response(serializer.errors)
 
+
 import datetime
+
 
 class DayHistory(APIView):
 
@@ -43,3 +45,31 @@ class DayHistory(APIView):
         for i in filtr1:
             print(i.when_date)
         return Response({'msg': "ok"})
+
+
+class MonthHistory(APIView):
+    def get(self, request):
+        month = datetime.datetime.now()
+        month = month.strftime("%m")
+        print(month)
+        filtr2 = HistoryModel.objects.filter(when_date__month=month)
+        all_data = {}
+        for i in filtr2:
+            all_data[i.who_payed.username] = [i.when_date, i.card_related.card_number, i.where]
+        return Response(all_data, status=200)
+
+
+class TopDayPayed(APIView):
+    def get(self, request):
+        day = datetime.datetime.now().day
+        try:
+            filtr1 = HistoryModel.objects.filter(when_date__day=day).order_by('-price').first()
+            if filtr1:
+                serializer = HistoryModelSerializer1(filtr1)
+                return Response(serializer.data, status=200)
+            else:
+                return Response({"detail": "No data found for today"}, status=404)
+        except HistoryModel.DoesNotExist:
+            return Response({"detail": "No data found for today"}, status=404)
+
+        # return Response(serializer.data, status=200)
