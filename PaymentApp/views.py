@@ -4,6 +4,7 @@ from .serializers import *
 from .models import HistoryModel
 from CardApp.models import CardModel
 from drf_yasg.utils import swagger_auto_schema
+from rest_framework.permissions import IsAuthenticated
 
 
 class HistoryAdd(APIView):

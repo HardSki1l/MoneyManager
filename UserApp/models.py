@@ -8,6 +8,8 @@ class UsersInfoModel(models.Model):
     first_name = models.CharField(max_length=32)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email', 'password']
 
     def __str__(self):
         return self.username
