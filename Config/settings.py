@@ -64,6 +64,7 @@ SIMPLE_JWT = {
     'AUTH_HEADER_NAME': 'HTTPS_AUTHORIZATION',
     'USER_ID_CLAIM': 'id',
     'USER_AUTHENTICATION_RULE': 'rest_framework_simplejwt.authentication.default_user_authentication_rule',
+
 }
 
 SWAGGER_SETTINGS = {

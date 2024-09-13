@@ -6,4 +6,5 @@ urlpatterns = [
     path('day/',DayHistory.as_view()),
     path('month/', MonthHistory.as_view()),
     path('top/day',TopDayPayed.as_view())
+
 ]

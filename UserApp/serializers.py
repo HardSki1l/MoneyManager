@@ -7,3 +7,9 @@ class UserRegisterSRL(serializers.ModelSerializer):
         model = UsersInfoModel
 
         fields = '__all__'
+
+
+class UserLoginSRl(serializers.ModelSerializer):
+    class Meta:
+        model = UsersInfoModel
+        fields = ("username", "password",)
